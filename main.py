@@ -17,7 +17,7 @@ options.add_argument("--no-sandbox")
 TELEGRAM_TOKEN = "7730806224:AAGtig-wTbaJhljMElOM4aO5ZYTvkDOlHfY"
 CHAT_ID = "725474643"
 
-API_URL = "https://landing-sports-api.sbk-188sports.com"
+API_URL = "https://landing-sports-api.sbk-188sports.com/api/v1/en-gb/Japan/home"
 AUTH_TOKEN_API = "https://sports.sbk-188sports.com/ftlessaue-me-would-The-good-Levaine-That-I-Pings?d=sports.sbk-188sports.com"
 
 # Отримання динамічного токена та куків через Selenium
