@@ -18,7 +18,6 @@ TELEGRAM_TOKEN = "7730806224:AAGtig-wTbaJhljMElOM4aO5ZYTvkDOlHfY"
 CHAT_ID = "725474643"
 
 API_URL = "https://landing-sports-api.sbk-188sports.com"
-
 AUTH_TOKEN_API = "https://sports.sbk-188sports.com/ftlessaue-me-would-The-good-Levaine-That-I-Pings?d=sports.sbk-188sports.com"
 
 # Отримання динамічного токена та куків через Selenium
@@ -28,19 +27,21 @@ def get_dynamic_headers():
         driver.get("https://sports.sbk-188sports.com/en-gb/sports?c=207&u=https://www.188bet.com")
         time.sleep(10)  # Очікуємо, поки сторінка завантажиться
 
-        # Отримуємо токен Authorization із JavaScript
-        token = driver.execute_script("return localStorage.getItem('auth_token');")
-        print(f"token is: {token}")
+        # Отримуємо jwt з sessionStorage
+        jwt_token = driver.execute_script("return sessionStorage.getItem('JWT');")
+        print(f"jwt token: {jwt_token}")
+
         cookies = driver.get_cookies()
         cookie_str = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
 
         headers = {
-            "Authorization": f"Bearer {token}",
+            "Authorization": f"Bearer {jwt_token}",
             "Cookie": cookie_str,
             "Accept": "application/json",
+            "Origin": "https://sports.sbk-188sports.com",  # Додаємо Origin, якщо потрібно
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
         }
-        return headers
+        return headers, jwt_token
 
 # Перевірка з'єднання з API
 def check_api_connection(headers):
@@ -62,10 +63,10 @@ async def send_notification(message):
 
 # Перевірка та сповіщення
 async def check_and_notify():
-    headers = get_dynamic_headers()  # Отримуємо оновлені заголовки
+    headers, jwt_token = get_dynamic_headers()  # Отримуємо оновлені заголовки та jwt
     data = check_api_connection(headers)
     if data:
-        message = f"API з'єднання успішне. Дані:\n{data}"
+        message = f"API з'єднання успішне. jwt token: {jwt_token}\nДані:\n{data}"
         print(message)
         await send_notification(message)
     else:
