@@ -7,7 +7,7 @@ import asyncio
 import time
 
 # Налаштування Selenium
-CHROME_DRIVER_PATH = "F:\\Bot\\chromedriver.exe"  # Вкажіть ваш шлях до chromedriver
+CHROME_DRIVER_PATH = "/bot/chromedriver"
 options = Options()
 options.add_argument("--headless")
 options.add_argument("--disable-gpu")
@@ -15,7 +15,7 @@ options.add_argument("--no-sandbox")
 
 # Telegram бот
 TELEGRAM_TOKEN = "7730806224:AAGtig-wTbaJhljMElOM4aO5ZYTvkDOlHfY"
-CHAT_IDS = ['725474643']  # Додано другий CHAT_ID
+CHAT_IDS = ['725474643', '7353625787']
 
 # API URL для футболу та баскетболу
 API_FOOTBALL_URL = "https://landing-sports-api.sbk-188sports.com/api/v2/en-gb/Japan/sport/1/mop/coupon/104/premium"
