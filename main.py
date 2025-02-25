@@ -187,6 +187,9 @@ async def send_notification(message):
 def compare_data(old_data, new_data, sport_type):
     messages = []
     for match_name, new_values in new_data.items():
+        if "Esports" in match_name:
+            continue  # Пропускаємо матчі з "Esports" у назві
+
         if match_name in old_data:
             old_values = old_data[match_name]
 
@@ -203,11 +206,11 @@ def compare_data(old_data, new_data, sport_type):
                     new_values["handicap_ah"] == old_values["handicap_ah"]):
                     if (new_values["handicap"]["handicap_1"] not in [0, None] and
                         old_values["handicap"]["handicap_1"] not in [0, None] and
-                        abs(new_values["handicap"]["handicap_1"] - old_values["handicap"]["handicap_1"]) >= 0.13):
+                        abs(new_values["handicap"]["handicap_1"] - old_values["handicap"]["handicap_1"]) >= 0.15):
                         handicap_changes.append(f"Фора 1: {old_values['handicap']['handicap_1']} → {new_values['handicap']['handicap_1']}")
                     if (new_values["handicap"]["handicap_2"] not in [0, None] and
                         old_values["handicap"]["handicap_2"] not in [0, None] and
-                        abs(new_values["handicap"]["handicap_2"] - old_values["handicap"]["handicap_2"]) >= 0.13):
+                        abs(new_values["handicap"]["handicap_2"] - old_values["handicap"]["handicap_2"]) >= 0.15):
                         handicap_changes.append(f"Фора 2: {old_values['handicap']['handicap_2']} → {new_values['handicap']['handicap_2']}")
                 if handicap_changes:
                     message += "Зміна фори:\n" + "\n".join(handicap_changes) + "\n"
@@ -219,11 +222,11 @@ def compare_data(old_data, new_data, sport_type):
                     new_values["total_ah"] == old_values["total_ah"]):
                     if (new_values["total_points"]["total_1"] not in [0, None] and
                         old_values["total_points"]["total_1"] not in [0, None] and
-                        abs(new_values["total_points"]["total_1"] - old_values["total_points"]["total_1"]) >= 0.13):
+                        abs(new_values["total_points"]["total_1"] - old_values["total_points"]["total_1"]) >= 0.15):
                         total_changes.append(f"Over: {old_values['total_points']['total_1']} → {new_values['total_points']['total_1']}")
                     if (new_values["total_points"]["total_2"] not in [0, None] and
                         old_values["total_points"]["total_2"] not in [0, None] and
-                        abs(new_values["total_points"]["total_2"] - old_values["total_points"]["total_2"]) >= 0.13):
+                        abs(new_values["total_points"]["total_2"] - old_values["total_points"]["total_2"]) >= 0.15):
                         total_changes.append(f"Under: {old_values['total_points']['total_2']} → {new_values['total_points']['total_2']}")
                 if total_changes:
                     message += "Зміна тоталу:\n" + "\n".join(total_changes) + "\n"
@@ -233,6 +236,7 @@ def compare_data(old_data, new_data, sport_type):
                 messages.append(message)
 
     return messages
+
 
 
 
