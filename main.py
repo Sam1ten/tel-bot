@@ -19,8 +19,8 @@ TELEGRAM_TOKEN = "7730806224:AAGtig-wTbaJhljMElOM4aO5ZYTvkDOlHfY"
 CHAT_IDS = ['725474643', '7353625787']
 
 # API URL для футболу та баскетболу
-API_FOOTBALL_URL = "https://landing-sports-api.sbk-188sports.com/api/v2/en-gb/Japan/sport/1/mop/coupon/104/premium"
-API_BASKETBALL_URL = "https://landing-sports-api.sbk-188sports.com/api/v2/en-gb/Japan/sport/2/mop/coupon/104/premium"
+API_FOOTBALL_URL = "https://landing-sports-api.sportsbook-188.com/api/v2/en-gb/Japan/sport/1/mop/coupon/104/premium"
+API_BASKETBALL_URL = "https://landing-sports-api.sportsbook-188.com/api/v2/en-gb/Japan/sport/2/mop/coupon/104/premium"
 
 # Глобальний словник для зберігання старих даних
 old_data = {
@@ -38,7 +38,7 @@ old_goals = {
 def get_dynamic_headers():
     service = Service(CHROME_DRIVER_PATH)
     with webdriver.Chrome(service=service, options=options) as driver:
-        driver.get("https://sports.sbk-188sports.com/en-gb/sports?c=207&u=https://www.188bet.com")
+        driver.get("https://sports.sportsbook-188.com/en-gb/sports/")
         time.sleep(10)  # Очікуємо, поки сторінка завантажиться
 
         # Отримуємо jwt з sessionStorage
@@ -52,7 +52,7 @@ def get_dynamic_headers():
             "Authorization": f"Bearer {jwt_token}",
             "Cookie": cookie_str,
             "Accept": "application/json",
-            "Origin": "https://sports.sbk-188sports.com",  # Додаємо Origin, якщо потрібно
+            "Origin": "https://sports.sportsbook-188.com",  # Додаємо Origin, якщо потрібно
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
         }
         return headers
