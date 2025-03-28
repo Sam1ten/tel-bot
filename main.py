@@ -19,8 +19,8 @@ TELEGRAM_TOKEN = "7730806224:AAGtig-wTbaJhljMElOM4aO5ZYTvkDOlHfY"
 CHAT_IDS = ['725474643', '7353625787']
 
 # API URL для футболу та баскетболу
-API_FOOTBALL_URL = "https://landing-sports-api.sportsbook-188.com/api/v2/en-gb/Japan/sport/1/mop/coupon/104/premium"
-API_BASKETBALL_URL = "https://landing-sports-api.sportsbook-188.com/api/v2/en-gb/Japan/sport/2/mop/coupon/104/premium"
+API_FOOTBALL_URL = "https://landing-sports-api.sportsbook-188.com/api/v2/en-gb/Japan/sport/1/mop/coupon/104/date/today/premium"
+API_BASKETBALL_URL = "https://landing-sports-api.sportsbook-188.com/api/v2/en-gb/Japan/sport/2/mop/coupon/104/date/today/premium"
 
 # Глобальний словник для зберігання старих даних
 old_data = {
